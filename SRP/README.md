@@ -22,6 +22,6 @@ The **Single Responsibility Principle (SRP)** states that a class should have on
 
 To adhere to SRP, these three responsibilities should be broken out into three separate, dedicated classes:
 
-1.  `PaymentGateway` (for Payment Logic)
-2.  `InvoiceRepository` or `InvoiceGenerator` (for Invoice Logic)
+1.  `PaymentProcessor` (for Payment Logic)
+2.  `InvoiceGenerator` (for Invoice Logic)
 3.  `EmailNotifier` (for Notification Logic)
