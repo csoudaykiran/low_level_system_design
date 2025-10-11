@@ -32,11 +32,6 @@ Instead of a single, large `File` class, break down the capabilities:
 1.  **`ReadableFile`**: Only supports the `read()` operation.
 2.  **`WritableFile`**: Inherits from `ReadableFile` and adds the `write()` operation.
 
-### The Improvement:
-
-* The `ReadOnlyFile` (now implemented via `ReadableFile`) doesn't *pretend* to support `write()`.
-* The `ReadWriteFile` (now implemented via `WritableFile`) supports both.
-
 ### The Benefit:
 
 Code that only expects reading can safely use any `ReadableFile` object. Code that needs writing will explicitly require a **`WritableFile`** object, ensuring that the necessary method (`write()`) is always present and functional. This prevents unexpected runtime failures! 🥳
