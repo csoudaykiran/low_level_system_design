@@ -54,7 +54,7 @@ We have 3 layers:
     - Handle the actual sending of notifications.
 
 
-## High-level module does not depend on concrete classes.
-## Low-level modules depend on abstraction, not the high-level module.
-## Adding new notification types requires no changes in business logic.
-## Makes code flexible, maintainable, and extensible.
+- High-level module does not depend on concrete classes.
+- Low-level modules depend on abstraction, not the high-level module.
+- Adding new notification types requires no changes in business logic.
+- Makes code flexible, maintainable, and extensible.
