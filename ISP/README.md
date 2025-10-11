@@ -1,9 +1,3 @@
-That's a great summary of the **Interface Segregation Principle (ISP)**.
-Here is the content converted to a **Markdown** format, using
-appropriate headings, bolding, and structure for clarity.
-
-------------------------------------------------------------------------
-
 ## 📘 Interface Segregation Principle (ISP)
 
 The **Interface Segregation Principle (ISP)** is one of the **SOLID
