@@ -1,49 +1,68 @@
-# Interface Segregation Principle (ISP)
+That's a great summary of the **Interface Segregation Principle (ISP)**.
+Here is the content converted to a **Markdown** format, using
+appropriate headings, bolding, and structure for clarity.
 
-## Problem Explanation
+------------------------------------------------------------------------
 
-The **MachineInterface** is a a **fat interface** (too broad).
-Every class implementing it is forced to define all methods ($\text{print\_doc, scan\_doc, fax\_doc}$), even if it doesn't support those operations.
+## 📘 Interface Segregation Principle (ISP)
 
-* For example, **OldPrinter** must include $\text{scan\_doc}$ and $\text{fax\_doc}$ but only raises $\text{NotImplementedError}$.
-* $\rightarrow$ ❌ **violates ISP**.
+The **Interface Segregation Principle (ISP)** is one of the **SOLID
+principles**.
 
----
+It states:
 
-## Summary
+> **"Clients should not be forced to depend on interfaces they do not
+> use."**
 
-| Concept | ❌ Without ISP | ✅ With ISP |
-| :--- | :--- | :--- |
-| **Interface** | One large $\text{MachineInterface}$ | Multiple small interfaces ($\text{PrinterInterface, ScannerInterface, FaxInterface}$) |
-| **Problem** | Classes forced to implement unused methods | Classes only implement what they actually need |
-| **Effect** | Code is harder to maintain and extend | Code is modular, flexible, and clean |
+In simple words: **Don't make a class implement methods it doesn't
+need.** Use **small, specific interfaces** instead of one big, general
+interface.
 
----
+------------------------------------------------------------------------
 
-## Definition
+## ❌ Problem (Without ISP)
 
-The **Interface Segregation Principle (ISP)** states that:
+Imagine a single, large `MultiFunctionPrinterInterface`:
 
-> *“Clients should not be forced to depend on interfaces they do not use.”*
+  Method
+  ---------------
+  `print_doc()`
+  `scan_doc()`
+  `fax_doc()`
 
-✅ In short: **Split large interfaces into smaller, more specific ones.**
+Now, an `OldPrinter` only prints. \* It is forced to implement
+`scan_doc()` and `fax_doc()`. \* The implementation for these unused
+methods will either do nothing or raise errors.
 
----
+**Problems:** \* **Wasted code** (implementations that do nothing). \*
+**Runtime errors** (if the methods raise "Not Implemented" errors). \*
+**Hard to maintain** and less flexible. \* The client (`OldPrinter`) is
+forced to depend on methods it doesn't need.
 
-## Solution
+------------------------------------------------------------------------
 
-The solution is to **segregate** the large $\text{MachineInterface}$ into smaller, role-specific interfaces:
+## ✅ Solution (With ISP)
 
-1.  **$\text{PrinterInterface}$**
-    * $\text{print\_doc()}$
-2.  **$\text{ScannerInterface}$**
-    * $\text{scan\_doc()}$
-3.  **$\text{FaxInterface}$**
-    * $\text{fax\_doc()}$
+Break the big interface into small, focused interfaces:
 
-Now, a class like **OldPrinter** only implements **$\text{PrinterInterface}$**, and a complex **MultiFunctionDevice** can implement all three interfaces.
+  Interface            Method
+  -------------------- ---------------
+  `PrinterInterface`   `print_doc()`
+  `ScannerInterface`   `scan_doc()`
+  `FaxInterface`       `fax_doc()`
 
-* $\text{OldPrinter}$ $\rightarrow$ $\text{implements PrinterInterface}$
-* $\text{MultiFunctionDevice}$ $\rightarrow$ $\text{implements PrinterInterface, ScannerInterface, FaxInterface}$
+**Implementations:** \* `OldPrinter` implements only
+**`PrinterInterface`**. \* `ModernPrinter` implements
+**`PrinterInterface`** and **`ScannerInterface`**. \* `SmartPrinter`
+implements all three: **`PrinterInterface`**, **`ScannerInterface`**,
+and **`FaxInterface`**.
 
-This ensures classes are only obligated to implement methods relevant to their function, adhering to the ISP.
+**Benefits:** \* Classes only implement what they actually need. \*
+Easier to maintain and extend. \* Cleaner and more flexible design.
+
+------------------------------------------------------------------------
+
+## 🧠 Key Takeaway
+
+**Split big interfaces into smaller, specific ones** so that client
+classes are not forced to depend on methods they don't use.
