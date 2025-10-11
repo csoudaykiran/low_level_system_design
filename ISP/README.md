@@ -1,16 +1,16 @@
-## Interface Segregation Principle (ISP)
+# Interface Segregation Principle (ISP)
 
-### Problem Explanation
+## Problem Explanation
 
-The **MachineInterface** is a **fat interface** (too broad).
+The **MachineInterface** is a a **fat interface** (too broad).
 Every class implementing it is forced to define all methods ($\text{print\_doc, scan\_doc, fax\_doc}$), even if it doesn't support those operations.
 
 * For example, **OldPrinter** must include $\text{scan\_doc}$ and $\text{fax\_doc}$ but only raises $\text{NotImplementedError}$.
 * $\rightarrow$ ❌ **violates ISP**.
 
-***
+---
 
-### Summary
+## Summary
 
 | Concept | ❌ Without ISP | ✅ With ISP |
 | :--- | :--- | :--- |
@@ -18,9 +18,9 @@ Every class implementing it is forced to define all methods ($\text{print\_doc, 
 | **Problem** | Classes forced to implement unused methods | Classes only implement what they actually need |
 | **Effect** | Code is harder to maintain and extend | Code is modular, flexible, and clean |
 
-***
+---
 
-### Definition
+## Definition
 
 The **Interface Segregation Principle (ISP)** states that:
 
@@ -28,9 +28,9 @@ The **Interface Segregation Principle (ISP)** states that:
 
 ✅ In short: **Split large interfaces into smaller, more specific ones.**
 
-***
+---
 
-### Solution
+## Solution
 
 The solution is to **segregate** the large $\text{MachineInterface}$ into smaller, role-specific interfaces:
 
@@ -46,4 +46,4 @@ Now, a class like **OldPrinter** only implements **$\text{PrinterInterface}$**, 
 * $\text{OldPrinter}$ $\rightarrow$ $\text{implements PrinterInterface}$
 * $\text{MultiFunctionDevice}$ $\rightarrow$ $\text{implements PrinterInterface, ScannerInterface, FaxInterface}$
 
-This ensures classes are only obligated to implement methods relevant to their function, adhering to the ISP. 
+This ensures classes are only obligated to implement methods relevant to their function, adhering to the ISP.
