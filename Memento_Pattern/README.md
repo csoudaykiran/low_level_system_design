@@ -43,27 +43,9 @@ But… it’s not a true Memento Pattern yet 😅.
 
 Let’s look at the three hidden problems 👇
 
-❌ Problem 1: Outside Code Controls History
-
-The history list sits outside the TextEditor.
-That means the TextEditor doesn’t manage its own versions — someone else (user code) does.
-
-👉 This breaks the Single Responsibility Principle (SRP).
-The editor should care only about text editing, not how history is stored.
-
-❌ Problem 2: State Is Not Protected
-
-Even though you use __content, your get_content() still returns raw text.
-If tomorrow your text becomes more complex — e.g., a list of objects, colors, or formatting —
-then the history might break because it only stores plain strings.
-
-In true Memento, the snapshot is stored as a Memento object —
-a sealed capsule that only the editor understands.
-
-❌ Problem 3: No Redo Logic
-
-Your history list only moves backward (undo).
-There’s no way to “go forward” (redo) because your history manager is missing.
-
-The Memento pattern introduces a Caretaker class (like a manager)
-that knows how to go backward and forward through saved Mementos cleanly.
+| Problem                          | Description                                                                                                                     |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| 🔓 **Encapsulation broken**      | The text editor itself directly stores all versions (`__history`). It knows *how* versions are managed — this should be hidden. |
+| 🧠 **Too many responsibilities** | One class is doing typing, saving, undoing, redoing, versioning. Violates **Single Responsibility Principle (SRP)**.            |
+| 💣 **Hard to extend**            | What if tomorrow we want to store version history in a file or database? You’d have to modify this whole class!                 |
+| 🧱 **State leaks possible**      | If you accidentally modify `__history` outside, you mess up all your undo/redo logic.                                           |
