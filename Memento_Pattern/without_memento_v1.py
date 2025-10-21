@@ -63,6 +63,15 @@ print("Current State Index:", editor.get_current_state())
 # Undo operations
 print("\n🔙 Undo 1:", editor.undo())   # Hello World
 print("🔙 Undo 2:", editor.undo())     # Hello
+
+print("Current State Index:", editor.get_current_state())
+editor.type("Everyone")  # Modifying after undo
+editor.save()  # New version after modification
+
+
+print("🟢 Current:", editor.get_content())
+print("History:", editor.get_save_versions())
+
 print("🔙 Undo 3:", editor.undo())     # None   ⚠️ No more undo operations left.
 print("🔙 Undo 4:", editor.undo())     # None   ⚠️ No more undo operations left.
 
