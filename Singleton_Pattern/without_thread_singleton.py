@@ -5,6 +5,8 @@ from datetime import datetime
 class Logger:
     _instance = None
 
+    def __init__(self):
+        
     def __new__(cls):
         if cls._instance is None:
             time.sleep(0.1)  # simulate delay

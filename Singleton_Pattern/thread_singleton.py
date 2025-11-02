@@ -4,7 +4,7 @@ from datetime import datetime
 
 class Logger:
     _instance = None
-    _lock = threading.Lock()  # 🧱 Shared lock for synchronization
+    _lock = threading.Lock()  #  Shared lock for synchronization
 
     def __new__(cls):
         # Only one thread can enter this block at a time
@@ -12,7 +12,7 @@ class Logger:
             if cls._instance is None:
                 time.sleep(0.1)  # Simulate slow creation
                 cls._instance = super(Logger, cls).__new__(cls)
-                print(f"🆕 Logger instance created safely at memory: {id(cls._instance)}")
+                print(f" Logger instance created safely at memory: {id(cls._instance)}")
         return cls._instance
 
     def log(self, message):
@@ -36,7 +36,7 @@ for t in threads:
     
     
 # output:
-# 🆕 Logger instance created safely at memory: 2463925712640
+#  Logger instance created safely at memory: 2463925712640
 # [12:36:48] [LOG]: Thread-1 got logger with id 2463925712640
 # [12:36:48] [LOG]: Thread-2 got logger with id 2463925712640
 # [12:36:48] [LOG]: Thread-3 got logger with id 2463925712640
